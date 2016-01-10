@@ -20,7 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+Still a work in progress, however there are minimal passing tests.
+To run the tests you can simply run `$ rspec` or use Guard with `$ bundle exec guard`.
+
+See the inline documentation for `timer.rb` and `http.rb` for more information on what is happening internally.
+
 
 ## Development
 
