@@ -13,7 +13,6 @@ describe SlackPomodoroTimer::HTTP do
     }
   end
 
-
   describe '#post' do
     it 'returns response with status code of 200 when url and data are valid' do
       http.data = valid_data

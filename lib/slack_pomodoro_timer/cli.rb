@@ -24,10 +24,29 @@ module SlackPomodoroTimer
     option :pomodoros
 
     desc 'config [OPTIONS]', 'set the url, channel, integration_type options with this command'
+    option :url
+    option :channel
+    option :type
     def config
-      # set default url
-      # set default channel
-      # set default integration type
+
+      if options[:url]
+        Config.add(url: options[:url])
+        puts "URL: #{options[:url]}"
+      end
+
+      if options[:channel]
+        Config.add(channel: options[:channel])
+        puts "CHANNEL: #{options[:channel]}"
+      end
+
+      if options[:type]
+        Config.add(type: options[:type])
+        puts "TYPE: #{options[:type]}"
+      end
+
+      if options.empty?
+        Config.display
+      end
     end
 
     desc 'start [OPTIONS]', 'set the number of pomodoros and time interval here'
@@ -35,7 +54,6 @@ module SlackPomodoroTimer
       # resolve timer interval
       # run timer
     end
-
 
   end
 end

@@ -22,6 +22,8 @@ describe SlackPomodoroTimer::Timer do
       Thread.new do
         timer.start {}
       end
+      # The call to timer.stop doesn't
+      # affect the outcome of the test
       timer.stop
       expect(timer.pomodoros).to eq(2)
     end

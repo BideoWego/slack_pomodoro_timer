@@ -11,7 +11,7 @@ module SlackPomodoroTimer
 
 
     # Starts the timer
-    # calls the passed black
+    # calls the passed block
     # for each pomodoro
     # waiting for the interval (seconds)
     # between calls

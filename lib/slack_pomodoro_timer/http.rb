@@ -40,9 +40,6 @@ module SlackPomodoroTimer
       @response = Net::HTTP.post_form(URI.parse(url), data)
     end
 
-
-
-
     private
     # Returns a hash with a payload key
     # conforming to what Net::HTTP expects
