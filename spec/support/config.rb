@@ -6,7 +6,6 @@ module Support
       end
     end
 
-
     def read_config(path)
       File.read(path)
     end

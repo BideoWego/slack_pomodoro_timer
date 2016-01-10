@@ -17,18 +17,9 @@ require 'thor'
 module SlackPomodoroTimer
   class CLI < Thor
 
-    option :seconds
-    option :minutes
-    option :hours
-
-    option :pomodoros
-
+    desc 'config [OPTIONS]', 'set the url and channel options with this command'
     option :url
     option :channel
-    option :integration_type
-
-
-    desc 'config [OPTIONS]', 'set the url, channel, integration_type options with this command'
     def config
 
       if options[:url]
@@ -41,10 +32,7 @@ module SlackPomodoroTimer
         puts "CHANNEL: #{options[:channel]}"
       end
 
-      if options[:integration_type]
-        Config.add(integration_type: options[:integration_type])
-        puts "INTEGRATION TYPE: #{options[:integration_type]}"
-      end
+      Config.save
 
       if options.empty?
         Config.display
@@ -53,12 +41,14 @@ module SlackPomodoroTimer
 
 
     desc 'start [OPTIONS]', 'set the number of pomodoros and time interval here'
+    option :seconds
+    option :minutes
+    option :hours
+    option :pomodoros
     def start
       # resolve timer interval
       # run timer
     end
-
-
   end
 end
 
