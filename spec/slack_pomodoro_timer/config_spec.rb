@@ -19,7 +19,6 @@ describe SlackPomodoroTimer::Config do
     FileUtils.rm_f(config::PATH) if File.exists?(config::PATH)
   end
 
-
   describe '#config' do
 
     it 'returns a hash' do
@@ -36,12 +35,11 @@ describe SlackPomodoroTimer::Config do
 
 
     context 'data was loaded' do
-        
+
       it 'returns a hash with channel, url, and type keys' do
         config.load
         expect(config.config).to have_key(:channel)
         expect(config.config).to have_key(:url)
-        expect(config.config).to have_key(:integration_type)
       end
 
 
@@ -60,7 +58,6 @@ describe SlackPomodoroTimer::Config do
           {
             :channel => 'foo',
             :url => 'bar',
-            :integration_type => 'baz'
           }
         end
 
@@ -82,7 +79,7 @@ describe SlackPomodoroTimer::Config do
 
 
   describe '#add' do
-    
+
     it 'adds a url to the config' do
       config.add(url: "www.slack.com")
       expect(config.config[:url]).to eq("www.slack.com")
@@ -94,11 +91,6 @@ describe SlackPomodoroTimer::Config do
       expect(config.config[:channel]).to eq("test")
     end
 
-
-    it 'adds a integration type to the config' do
-      config.add(integration_type: "slackbot")
-      expect(config.config[:integration_type]).to eq("slackbot")
-    end
   end
 
 
@@ -117,7 +109,6 @@ describe SlackPomodoroTimer::Config do
         config.save
         text = read_config(fake_config_path)
         expect(text).to match(/general/)
-        expect(text).to match(/slackbot/)
       end
     end
 
@@ -128,7 +119,6 @@ describe SlackPomodoroTimer::Config do
         {
           :url => 'www.slack.com',
           :channel => 'general',
-          :integration_type => 'webhook'
         }
       end
 
@@ -138,7 +128,6 @@ describe SlackPomodoroTimer::Config do
         text = read_config(fake_config_path)
         expect(text).to match(/www\.slack\.com/)
         expect(text).to match(/general/)
-        expect(text).to match(/webhook/)
       end
     end
 
@@ -146,7 +135,7 @@ describe SlackPomodoroTimer::Config do
 
 
   describe '#load' do
-    
+
     it 'returns a hash' do
       expect(config.load).to be_a(Hash)
     end
