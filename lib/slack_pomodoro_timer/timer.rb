@@ -2,7 +2,8 @@ module SlackPomodoroTimer
   class Timer
 
     attr_accessor :pomodoros,
-                  :interval
+                  :interval,
+                  :total
 
     def initialize(options={})
       @pomodoros = options[:pomodoros]
