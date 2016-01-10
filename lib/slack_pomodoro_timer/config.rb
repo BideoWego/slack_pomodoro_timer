@@ -22,7 +22,6 @@ module SlackPomodoroTimer
     def self.add(options={})
       add_option(:channel, options[:channel])
       add_option(:url, options[:url])
-      add_option(:integration_type, options[:integration_type])
     end
 
 
@@ -77,7 +76,6 @@ module SlackPomodoroTimer
       {
         :channel => 'general',
         :url => '',
-        :integration_type => 'slackbot'
       }
     end
 
