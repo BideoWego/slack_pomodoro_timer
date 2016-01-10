@@ -3,41 +3,91 @@ require 'yaml'
 module SlackPomodoroTimer
   class Config
 
-    @@config_file = "#{Dir.home}/.slack_pomodoro_timer"
+    FILENAME = '.slack_pomodoro_timer'
+    PATH = "#{Dir.home}/#{FILENAME}"
 
+
+    @@config = {}
+
+
+    # Class variable getter
+    # returns a hash of config values
     def self.config
-      @@config ||= self.load_config
+      @@config
     end
 
-    def self.add(url: nil, channel: nil, type: nil)
-      config[:channel] = channel if channel
-      config[:url] = url if url
-      config[:type] = type if type
-      save
+
+    # Add a config option
+    # or options
+    def self.add(options={})
+      add_option(:channel, options[:channel])
+      add_option(:url, options[:url])
+      add_option(:integration_type, options[:integration_type])
     end
 
+
+    # Saves the current config
+    # hash as YAML to the
+    # path
     def self.save
-      File.open(@@config_file, 'w+') do |f|
+      File.open(PATH, 'w+') do |f|
         f.write(YAML.dump(config))
       end
     end
 
-    def self.load_config
-      begin
-        YAML.load_file(@@config_file)
-      rescue
-        {channel: nil, url: nil}
+
+    # Loads the config file if it exists
+    # or sets default values
+    # if the file does not exist
+    def self.load
+      file_exists = File.exists?(PATH)
+      if File.exists?(PATH)
+        value = YAML.load_file(PATH)
+      else
+        value = defaults
       end
+      @@config = value
     end
 
+
+    # Get a config value by key
     def self.get(key)
       config[key]
     end
 
+
+    # Display all config values
     def self.display
-      config.each do |key, value|
-        puts "#{key.upcase}: #{value}"
+      if config.empty?
+        puts "No config values set"
+      else
+        config.each do |key, value|
+          puts "#{key.upcase}: #{value}"
+        end
       end
     end
+
+
+
+
+    private
+
+    # Returns the default config values
+    def self.defaults
+      {
+        :channel => 'general',
+        :url => '',
+        :integration_type => 'slackbot'
+      }
+    end
+
+
+    # Sets the key to the given value
+    # unless it is nil
+    def self.add_option(key, value)
+      config[key] = value unless value.nil?
+    end
+
+
   end
 end
