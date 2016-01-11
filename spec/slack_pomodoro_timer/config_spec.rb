@@ -19,6 +19,32 @@ describe SlackPomodoroTimer::Config do
     FileUtils.rm_f(config::PATH) if File.exists?(config::PATH)
   end
 
+  describe '#configured?' do
+    it 'returns true if the url and channel have been set' do
+      empty_url = {url: 'url', channel: 'test'}
+      write_config(fake_config_path, empty_url)
+      expect(config.configured?).to eq true
+    end
+
+    it 'returns false if the url has not been set' do
+      empty_url = {url: '', channel: 'test'}
+      write_config(fake_config_path, empty_url)
+      expect(config.configured?).to eq false
+    end
+
+    it 'returns false if the channel has not been set' do
+      empty_url = {url: 'test', channel: nil}
+      write_config(fake_config_path, empty_url)
+      expect(config.configured?).to eq false
+    end
+
+    it 'returns false if neither value has been set' do
+      empty_url = {url: nil, channel: nil}
+      write_config(fake_config_path, empty_url)
+      expect(config.configured?).to eq false
+    end
+  end
+
   describe '#config' do
 
     it 'returns a hash' do

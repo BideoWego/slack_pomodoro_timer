@@ -16,6 +16,11 @@ module SlackPomodoroTimer
       @@config
     end
 
+    def self.configured?
+      self.load
+      !@@config.any? { |key, value| value.nil? || value.empty? }
+    end
+
 
     # Add a config option
     # or options
