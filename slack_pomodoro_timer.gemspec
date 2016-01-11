@@ -6,12 +6,12 @@ require 'slack_pomodoro_timer/version'
 Gem::Specification.new do |spec|
   spec.name          = "slack_pomodoro_timer"
   spec.version       = SlackPomodoroTimer::VERSION
-  spec.authors       = ["Bideo Wego"]
-  spec.email         = ["bideowego@gmail.com"]
+  spec.authors       = ["kitlangton", "Bideo Wego"]
+  spec.email         = ["kit.langton@gmail.com", "bideowego@gmail.com"]
 
   spec.summary       = %q{A pomodoro timer for Slack}
   spec.description   = %q{Start up a pomodoro timer from your command line that posts to a channel in your Slack team.}
-  spec.homepage      = "http://bideowego.com"
+  spec.homepage      = "https://github.com/BideoWego/slack_pomodoro_timer"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
