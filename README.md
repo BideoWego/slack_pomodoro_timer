@@ -1,6 +1,7 @@
 # SlackPomodoroTimer
 
 by [kitlangton](https://github.com/kitlangton) and [Bideo Wego](https://github.com/BideoWego)
+Available on RubyGems.org at [https://rubygems.org/gems/slack_pomodoro_timer](https://rubygems.org/gems/slack_pomodoro_timer)
 
 
 
