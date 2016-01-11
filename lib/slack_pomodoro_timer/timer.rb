@@ -1,6 +1,8 @@
 module SlackPomodoroTimer
   class Timer
 
+    DONE = :done
+
     attr_accessor :pomodoros,
                   :interval
 
@@ -25,7 +27,11 @@ module SlackPomodoroTimer
         yield(current_pomodoro) if block_given?
         display_countdown
         @pomodoros -= 1
-        start(&block) unless stop?
+        if stop?
+          stop(&block)
+        else
+          start(&block)
+        end
       rescue SystemExit, Interrupt
         puts quit_message
       end
@@ -43,6 +49,13 @@ module SlackPomodoroTimer
 
 
     private
+
+    # Calls the given block passing
+    # 
+    def stop(&block)
+      yield(DONE)
+      puts stop_message
+    end
 
     # Displays the timer countdown to next
     # pomodoro in the console
@@ -89,6 +102,12 @@ module SlackPomodoroTimer
     def start_message
       "Slack Pomodoro Timer started!" +
       "\nStop the timer at any time with CTRL-C"
+    end
+
+
+    # Returns the timer stop message
+    def stop_message
+      "Slack Pomodoro Timer stopped!"
     end
 
 

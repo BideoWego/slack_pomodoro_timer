@@ -103,6 +103,14 @@ module SlackPomodoroTimer
       Stopping the timer
 
         At any given time while the timer is running you may stop the timer with CTRL-C.
+
+
+      QUICK TIP!
+
+        To test the timer out try passing it a short time limit like 0.1
+
+        $ slack_pomodoro_timer start --minutes 0.1
+        
     ;
 
 

@@ -22,7 +22,7 @@ describe SlackPomodoroTimer::Timer do
 
 
     it 'runs a block on timer start' do
-      expect { |b| timer.start(&b) }.to yield_successive_args(1)
+      expect { |b| timer.start(&b) }.to yield_successive_args(1, SlackPomodoroTimer::Timer::DONE)
     end
   end
 

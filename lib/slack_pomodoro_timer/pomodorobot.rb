@@ -11,6 +11,8 @@ module SlackPomodoroTimer
         message = '@group :pomodoro:'
         if current_pomodoro == timer.total
           message += ' Last one!'
+        elsif current_pomodoro == Timer::DONE
+          message += "s are DONE!"
         end
         post message
       end
