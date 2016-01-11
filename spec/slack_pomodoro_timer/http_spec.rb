@@ -37,5 +37,3 @@ describe SlackPomodoroTimer::HTTP do
   end
 
 end
-
-

@@ -6,28 +6,32 @@ A Ruby powered command line app for sending timed messages to slack channels
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'slack_pomodoro_timer'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install slack_pomodoro_timer
+
+Configure your Slackbot url:
+
+    $ slack_pomodoro_timer config --url https://company.slack.com/services/hooks/slackbot?token=thisisyourtoken
+
+Configure the channel into which you would like to post (this defaults to the general channel):
+
+    $ slack_pomodoro_timer config --channel my_channel
+
+You do not need to prepend your channel name with a # symbol, but if absolutely must, then make sure to wrap your channel name in quotes:
+
+    $ slack_pomodoro_timer config --channel "#my_channel"
 
 ## Usage
 
+To run 5 consecutive 25 minute Pomodoros:
+
+    $ slack_pomodoro_timer start 5
+
+Here's how to use a custom pomodoro length:
+
+    $ slack_pomodoro_timer start 5 --minutes 10
 
 Still a work in progress, however there are minimal passing tests.
 To run the tests you can simply run `$ rspec` or use Guard with `$ bundle exec guard`.
-
-See the inline documentation for `timer.rb` and `http.rb` for more information on what is happening internally.
-
 
 ## Development
 

@@ -52,15 +52,13 @@ module SlackPomodoroTimer
     end
 
     def format_countdown(seconds)
-      hours = seconds / 60 / 60
       minutes = (seconds / 60).to_s.rjust(2,"0")
+      while seconds >= 60
+        seconds-= 60
+      end
       seconds = seconds.to_s.rjust(2,"0")
 
-      if hours >= 1
-        "#{display_pomodoro_status} -- #{hours}:#{minutes}:#{seconds}"
-      else
-        "#{display_pomodoro_status} -- #{minutes}:#{seconds}"
-      end
+      "#{display_pomodoro_status} -- #{minutes}:#{seconds}"
     end
 
     def current_time

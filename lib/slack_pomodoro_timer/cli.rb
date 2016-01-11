@@ -5,13 +5,12 @@ require 'thor'
 # Config the timer
 # slack_pomodoro_timer config --url SLACK_INTEGRATION_URL_HERE
 # slack_pomodoro_timer config --channel CHANNEL_HERE
-# slack_pomodoro_timer config --integration_type CHANNEL_HERE
 
 # Running the timer
-# slack_pomodoro_timer start --pomodoros 3 --seconds 100
-# slack_pomodoro_timer start --pomodoros 3 --minutes 30
-# slack_pomodoro_timer start --pomodoros 3 --hours 1
-# slack_pomodoro_timer start --pomodoros 3 --minutes 30 --channel #general
+# slack_pomodoro_timer start 5
+
+# default timer is 25 minutes, to override:
+# slack_pomodoro_timer start 6 --minutes 30
 
 
 module SlackPomodoroTimer
@@ -43,12 +42,10 @@ module SlackPomodoroTimer
 
 
     desc 'start COUNT [OPTIONS]', 'set the number of pomodoros and time interval here'
-    option :seconds, aliases: :s, type: :numeric
-    option :minutes, aliases: :m, type: :numeric
-    option :hours, aliases: :h, type: :numeric
+    option :minutes, aliases: :m, type: :numeric, default: 25
     def start(pomodoros)
       if Config.configured?
-        interval_in_seconds = options[:seconds]
+        interval_in_seconds = options[:minutes] * 60
         Pomodorobot.start_timer(pomodoros, interval_in_seconds)
       else
         puts "Not Configured."
