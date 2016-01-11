@@ -30,10 +30,14 @@ module SlackPomodoroTimer
       end
     end
 
+
     def pomodoros=(pomodoros)
       @total = pomodoros
       @pomodoros = pomodoros
     end
+
+
+
 
     private
 
@@ -46,10 +50,12 @@ module SlackPomodoroTimer
       puts "#{display_pomodoro_status} -- DONE at#{current_time}"
     end
 
+
     def time_remaining(end_time)
       remaining = (end_time - Time.now).ceil
       format_countdown(remaining)
     end
+
 
     def format_countdown(seconds)
       hours = seconds / 60 / 60
@@ -63,18 +69,22 @@ module SlackPomodoroTimer
       end
     end
 
+
     def current_time
       Time.now.strftime("%l:%M %p")
     end
+
 
     def quit_message
       "\nRemaining pomodoros will not be posted." +
       "\nQuitting slack_pomodoro_timer..."
     end
 
+
     def display_pomodoro_status
       "Pomodoro #{current_pomodoro} of #{total}"
     end
+
 
     def current_pomodoro
       total - pomodoros + 1
