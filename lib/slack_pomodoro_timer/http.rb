@@ -3,6 +3,7 @@ require 'json'
 
 module SlackPomodoroTimer
   class HTTP
+    
     REGEXES = {
       :slackbot => /\.slack.com\/services\/hooks\/slackbot/,
       :webhook => /hooks\.slack\.com\/services/
@@ -15,15 +16,14 @@ module SlackPomodoroTimer
 
     attr_reader :integration_type
 
-    def self.valid_url?(url)
-      REGEXES.any? { |key, regex| regex.match(url) }
-    end
 
+    # Accepts options for url and data
     def initialize(options={})
       @url = options[:url]
       @data = options[:data]
       set_integration_type
     end
+
 
     # Overrides default setter
     # to allow internally
@@ -34,6 +34,7 @@ module SlackPomodoroTimer
       set_integration_type
       @url
     end
+
 
     # Posts the data to the given URL
     def post
@@ -107,6 +108,13 @@ module SlackPomodoroTimer
       else
         raise ArgumentError, "Slack URL is invalid"
       end
+    end
+
+
+    # Validates that the URL fits the expected
+    # Slackbot or Webhook URL format
+    def self.valid_url?(url)
+      REGEXES.any? { |key, regex| regex.match(url) }
     end
 
 

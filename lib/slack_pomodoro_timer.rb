@@ -6,10 +6,4 @@ require_relative 'slack_pomodoro_timer/config'
 require_relative 'slack_pomodoro_timer/pomodorobot'
 
 module SlackPomodoroTimer
-  # Your code goes here...
-
-  # Thor CLI
-  # Slack API
-  # Timer
-  # Persistence
 end

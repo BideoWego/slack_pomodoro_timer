@@ -21,7 +21,7 @@ $ gem install slack_pomodoro_timer
 Configure the Slackbot URL:
 
 ```shell
-$ slack_pomodoro_timer config --url https://company.slack.com/services/hooks/slackbot?token=thisisyourtoken
+$ slack_pomodoro_timer config --url https://company.slack.com/services/hooks/slackbot?token=YOUR_TOKEN_HERE
 ```
 
 

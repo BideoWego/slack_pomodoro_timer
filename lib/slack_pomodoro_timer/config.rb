@@ -16,6 +16,9 @@ module SlackPomodoroTimer
       @@config
     end
 
+
+    # Returns true if
+    # configured properly
     def self.configured?
       self.load
       if @@config.empty? ||
