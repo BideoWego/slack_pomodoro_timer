@@ -18,7 +18,12 @@ module SlackPomodoroTimer
 
     def self.configured?
       self.load
-      !@@config.any? { |key, value| value.nil? || value.empty? }
+      if @@config.empty? ||
+         @@config.any? { |key, value| value.nil? || value.empty? }
+        false
+      else
+        true
+      end
     end
 
 

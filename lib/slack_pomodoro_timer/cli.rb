@@ -6,8 +6,8 @@ module SlackPomodoroTimer
 
     desc 'config [OPTIONS]', 'set the url and channel options with this command'
 
-    option :url
-    option :channel
+    option :url, aliases: :u
+    option :channel, aliases: :c
 
     def config
       Config.load
@@ -33,13 +33,11 @@ module SlackPomodoroTimer
 
     desc 'start COUNT [OPTIONS]', 'set the number of pomodoros and time interval here'
 
-    option :seconds, aliases: :s, type: :numeric
-    option :minutes, aliases: :m, type: :numeric
-    option :hours, aliases: :h, type: :numeric
-
+    option :minutes, aliases: :m, type: :numeric, default: 25
+    
     def start(pomodoros)
       if Config.configured?
-        interval_in_seconds = options[:seconds]
+        interval_in_seconds = options[:minutes] * 60
         Pomodorobot.start_timer(pomodoros, interval_in_seconds)
       else
         puts "Not Configured."
