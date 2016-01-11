@@ -1,5 +1,7 @@
 # SlackPomodoroTimer
 
+by [kitlangton](https://github.com/kitlangton) and [Bideo Wego](https://github.com/BideoWego)
+
 A Ruby powered command line app for sending timed messages to slack channels
 
 ## Installation
