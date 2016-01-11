@@ -1,24 +1,14 @@
 require 'thor'
 
-# Proposed command structure:
-
-# Config the timer
-# slack_pomodoro_timer config --url SLACK_INTEGRATION_URL_HERE
-# slack_pomodoro_timer config --channel CHANNEL_HERE
-
-# Running the timer
-# slack_pomodoro_timer start 5
-
-# default timer is 25 minutes, to override:
-# slack_pomodoro_timer start 6 --minutes 30
-
 
 module SlackPomodoroTimer
   class CLI < Thor
 
     desc 'config [OPTIONS]', 'set the url and channel options with this command'
-    option :url
-    option :channel
+
+    option :url, aliases: :u
+    option :channel, aliases: :c
+
     def config
       Config.load
 
@@ -42,7 +32,9 @@ module SlackPomodoroTimer
 
 
     desc 'start COUNT [OPTIONS]', 'set the number of pomodoros and time interval here'
+
     option :minutes, aliases: :m, type: :numeric, default: 25
+    
     def start(pomodoros)
       if Config.configured?
         interval_in_seconds = options[:minutes] * 60
