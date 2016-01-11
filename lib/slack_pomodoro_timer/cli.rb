@@ -110,7 +110,7 @@ module SlackPomodoroTimer
         To test the timer out try passing it a short time limit like 0.1
 
         $ slack_pomodoro_timer start --minutes 0.1
-        
+
     ;
 
 
@@ -127,6 +127,14 @@ module SlackPomodoroTimer
         puts "Not Configured."
         puts "Run 'slack_pomodoro_timer help config'"
       end
+    end
+
+
+    desc 'version', 'get the currently installed version of Slack Pomodoro Timer'
+
+    # Output the current version
+    def version
+      puts SlackPomodoroTimer::VERSION
     end
 
 
