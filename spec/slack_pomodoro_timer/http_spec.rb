@@ -22,6 +22,20 @@ describe SlackPomodoroTimer::HTTP do
   end
 
 
+  describe '#valid_url?' do
+    it 'returns true if the url is valid' do
+      expect(SlackPomodoroTimer::HTTP.valid_url?(url)).to eq true
+    end
+
+    it 'returns false if the url is not a slack url' do
+      expect(SlackPomodoroTimer::HTTP.valid_url?('www.google.com')).to eq false
+    end
+
+    it 'returns false if the url is empty' do
+      expect(SlackPomodoroTimer::HTTP.valid_url?('')).to eq false
+    end
+  end
+
 end
 
 

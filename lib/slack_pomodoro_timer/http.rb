@@ -15,6 +15,9 @@ module SlackPomodoroTimer
 
     attr_reader :integration_type
 
+    def self.valid_url?(url)
+      REGEXES.any? { |key, regex| regex.match(url) }
+    end
 
     def initialize(options={})
       @url = options[:url]
@@ -32,13 +35,13 @@ module SlackPomodoroTimer
       @url
     end
 
-
     # Posts the data to the given URL
     def post
       data = serialized_data
       url = url_for_integration_type
       @response = Net::HTTP.post_form(URI.parse(url), data)
     end
+
 
     private
     # Returns a hash with a payload key
