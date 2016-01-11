@@ -2,8 +2,7 @@ module SlackPomodoroTimer
   class Timer
 
     attr_accessor :pomodoros,
-                  :interval,
-                  :total
+                  :interval
 
     attr_reader :total
 
