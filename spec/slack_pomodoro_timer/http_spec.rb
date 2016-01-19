@@ -3,7 +3,7 @@ require 'slack_pomodoro_timer/http'
 
 describe SlackPomodoroTimer::HTTP do
 
-  let(:url) { 'https://vikingcodeschool.slack.com/services/hooks/slackbot?token=bii9bJoHe1mbns9bBm5lTpb6' }
+  let(:url) { ENV["SLACK_URL"] }
   let(:http) { SlackPomodoroTimer::HTTP.new(:url => url) }
   let(:valid_data) do
     {
